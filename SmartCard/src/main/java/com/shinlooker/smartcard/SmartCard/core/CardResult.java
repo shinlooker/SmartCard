@@ -1,27 +1,19 @@
 package com.shinlooker.smartcard.SmartCard.core;
 
-
 import com.shinlooker.smartcard.utils.LogUtil;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CardResult {
+
+    private int status;
     private String sw;
     private String rapdu;
-    private int status;
+    private String apdu;
     private String message;
 
     public CardResult() {
-
-    }
-
-    public String getRapdu() {
-        return rapdu;
-    }
-
-    public void setRapdu(String rapdu) {
-        this.rapdu = rapdu;
     }
 
     public int getStatus() {
@@ -32,14 +24,6 @@ public class CardResult {
         this.status = status;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public String getSw() {
         return sw;
     }
@@ -48,10 +32,35 @@ public class CardResult {
         this.sw = sw;
     }
 
+    public String getRapdu() {
+        return rapdu;
+    }
+
+    public void setRapdu(String rapdu) {
+        this.rapdu = rapdu;
+    }
+
+    public String getApdu() {
+        return apdu;
+    }
+
+    public void setApdu(String apdu) {
+        this.apdu = apdu;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     public CardResult(int status, String message, String rapdu) {
+        this.status = status;
         this.sw = rapdu.substring(rapdu.length() - 4);
         this.rapdu = rapdu.substring(0, rapdu.length() - 4);
-        this.status = status;
+        this.apdu = rapdu;
         this.message = message;
     }
 
@@ -76,13 +85,4 @@ public class CardResult {
         return m.find();
     }
 
-    @Override
-    public String toString() {
-        return "CardResult{" +
-                "sw='" + sw + '\'' +
-                ", rapdu='" + rapdu + '\'' +
-                ", status=" + status +
-                ", message='" + message + '\'' +
-                '}';
-    }
 }

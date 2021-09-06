@@ -3,10 +3,7 @@ package com.shinlooker.smartcard.utils;
 import android.text.TextUtils;
 import android.util.Log;
 
-/**
- * @author hank
- * 2019-10-29
- */
+
 public final class LogUtil {
     public static final int LEVEL_LOG_I = 0x01;
     public static final int LEVEL_LOG_D = 0x02;

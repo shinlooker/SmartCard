@@ -17,7 +17,7 @@ import org.simalliance.openmobileapi.Session;
  * Android P之前需要调用SIMalliance的Jar实现
  * SIMalliance资源地址：https://simalliance.org/se/se-educational-resources/
  */
-public final class SmartCardBySimalliance extends BaseSmartCard implements CallBack {
+ final class SmartCardBySimalliance extends BaseSmartCard implements CallBack {
     private SEService mSEService;
     private boolean mServiceIsConnection = false;
     private Object mLock = new Object();
@@ -218,13 +218,12 @@ public final class SmartCardBySimalliance extends BaseSmartCard implements CallB
     private Reader getCurrentAvailableReader() {
         LogUtil.e(TAG, "select reader name:" + getmReaderType().getValue());
         Reader[] readers = mSEService.getReaders();
-        // 判断是否有可用的通道
+
         if (readers == null || readers.length < 1) {
             LogUtil.e(TAG, "There is no avaliable reader");
             return null;
         }
 
-        // 获取当前需要操作通道的Reader对象
         for (Reader reader : readers) {
             LogUtil.e(TAG, "avaliable reader name:" + reader.getName());
             if (reader.getName().startsWith(getmReaderType().getValue())) {
@@ -258,6 +257,4 @@ public final class SmartCardBySimalliance extends BaseSmartCard implements CallB
             LogUtil.e(TAG, "session close error:" + e.getMessage());
         }
     }
-
-
 }

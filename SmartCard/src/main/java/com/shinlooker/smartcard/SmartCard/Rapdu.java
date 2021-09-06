@@ -1,7 +1,6 @@
 package com.shinlooker.smartcard.SmartCard;
-/**
- * Created by zhangfuxiao on 2017/9/5.
- */
+
+
 public class Rapdu {
 	/**
 	 * 执行CAPDU对应的索引号

@@ -108,12 +108,10 @@ public class PreconditionUtil {
      * @throws IllegalArgumentException if {@code value} was negative
      */
     public static @IntRange(from = 0)
-    int checkArgumentNonnegative(final int value,
-                                 @Nullable String errorMessage) {
+    int checkArgumentNonnegative(final int value, @Nullable String errorMessage) {
         if (value < 0) {
             throw new IllegalArgumentException(errorMessage);
         }
-
         return value;
     }
 
@@ -129,7 +127,6 @@ public class PreconditionUtil {
         if (value < 0) {
             throw new IllegalArgumentException();
         }
-
         return value;
     }
 
@@ -143,8 +140,7 @@ public class PreconditionUtil {
      * @return the validated int value
      * @throws IllegalArgumentException if {@code value} was not within the range
      */
-    public static int checkArgumentInRange(int value, int lower, int upper,
-                                           @NonNull String valueName) {
+    public static int checkArgumentInRange(int value, int lower, int upper, @NonNull String valueName) {
         if (value < lower) {
             throw new IllegalArgumentException(
                     String.format(Locale.US,
@@ -154,7 +150,6 @@ public class PreconditionUtil {
                     String.format(Locale.US,
                             "%s is out of range of [%d, %d] (too high)", valueName, lower, upper));
         }
-
         return value;
     }
 

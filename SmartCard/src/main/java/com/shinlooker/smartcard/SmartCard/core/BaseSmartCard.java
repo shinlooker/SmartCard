@@ -6,9 +6,9 @@ public abstract class BaseSmartCard {
     final int STATUS_CODE_SUCCESS = 0;
     final int STATUS_CODE_FAIL = -1;
 
-    public abstract CardResult execute(String command);
-
     public abstract CardResult openChannel(String command);
+
+    public abstract CardResult execute(String command);
 
     public abstract void closeChannel();
 

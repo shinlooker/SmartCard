@@ -34,7 +34,7 @@ public class ThreadPoolManager {
     /**
      * 单例模式
      */
-    private static com.laser.smartcard.core.ThreadPoolManager manager;
+    private static ThreadPoolManager manager;
     /**
      * 线程池对象
      */
@@ -51,11 +51,11 @@ public class ThreadPoolManager {
      *
      * @return manager 操作类
      */
-    public static com.laser.smartcard.core.ThreadPoolManager getInstance() {
+    public static ThreadPoolManager getInstance() {
         if (manager == null) {
-            synchronized (com.laser.smartcard.core.ThreadPoolManager.class) {
+            synchronized (ThreadPoolManager.class) {
                 if (manager == null) {
-                    manager = new com.laser.smartcard.core.ThreadPoolManager();
+                    manager = new ThreadPoolManager();
                 }
             }
         }

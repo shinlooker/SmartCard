@@ -19,7 +19,7 @@ import java.util.concurrent.Executor;
  * Android P以后需要调用Google的api实现
  */
 @RequiresApi(api = 28)
-public final class SmartCardByGoogle extends BaseSmartCard implements SEService.OnConnectedListener {
+final class SmartCardByGoogle extends BaseSmartCard implements SEService.OnConnectedListener {
     private Object mLock = new Object();
     private SEService mSEService;
     private boolean mServiceIsConnection = false;
@@ -120,7 +120,6 @@ public final class SmartCardByGoogle extends BaseSmartCard implements SEService.
         }
     }
 
-
     @Override
     public void onConnected() {
         LogUtil.i(TAG, "service is connected");
@@ -130,14 +129,12 @@ public final class SmartCardByGoogle extends BaseSmartCard implements SEService.
         }
     }
 
-
     public class OMAExecutor implements Executor {
         @Override
         public void execute(@NonNull Runnable command) {
             command.run();
         }
     }
-
 
     /**
      * 执行APDU指令
@@ -168,13 +165,12 @@ public final class SmartCardByGoogle extends BaseSmartCard implements SEService.
             if (resultCode == STATUS_CODE_SUCCESS) {
                 String rapdu = Hex.bytesToHexString(mChannel.getSelectResponse());
                 LogUtil.e(TAG, "Response APDU：" + rapdu);
-                return new CardResult(STATUS_CODE_SUCCESS, resultDesc,rapdu);
+                return new CardResult(STATUS_CODE_SUCCESS, resultDesc, rapdu);
             }
 
             LogUtil.e(TAG, "OpenChannel Error Desc:" + resultDesc);
             return new CardResult(resultCode, resultDesc);
         }
-
 
         byte[] byteCommand = Hex.hexStringToBytes(mReuqestCommand);
 
@@ -193,11 +189,11 @@ public final class SmartCardByGoogle extends BaseSmartCard implements SEService.
      */
     private Object[] openCurrentAvailableChannel(String aid) throws Exception {
         Reader reader = getCurrentAvailableReader();
-        // 判断通道是否存在
+
         if (reader == null) {
             return new Object[]{STATUS_CODE_FAIL, "selected reader not exist"};
         }
-        // 判断选择的通道是否可用
+
         if (!reader.isSecureElementPresent()) {
             return new Object[]{STATUS_CODE_FAIL, "selected reader can not use"};
         }
@@ -224,13 +220,12 @@ public final class SmartCardByGoogle extends BaseSmartCard implements SEService.
     private Reader getCurrentAvailableReader() {
         LogUtil.e(TAG, "select reader name:" + getmReaderType().getValue());
         Reader[] readers = mSEService.getReaders();
-        // 判断是否有可用的通道
+
         if (readers.length < 1) {
             LogUtil.e(TAG, "There is no avaliable reader");
             return null;
         }
 
-        // 获取当前需要操作通道的Reader对象
         for (Reader reader : readers) {
             LogUtil.e(TAG, "avaliable reader name:" + reader.getName());
             if (reader.getName().startsWith(getmReaderType().getValue())) {

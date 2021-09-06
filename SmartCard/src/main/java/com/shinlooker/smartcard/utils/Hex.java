@@ -47,7 +47,6 @@ public final class Hex {
 		return d;
 	}
 
-
 	public static final String long2HexString(long n, int byteNum) {
 		byteNum <<= 1;
 		char[] buf = new char[byteNum];
@@ -59,7 +58,6 @@ public final class Hex {
 
 		return new String(buf);
 	}
-
 
 	public static final byte[] padding(byte[] data, byte firstPadByte, byte nextPadByte, boolean padding) {
 		int padLen = data.length % 8;

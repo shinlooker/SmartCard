@@ -86,7 +86,6 @@ public final class SmartCard {
         smartCardInterface.closeChannel();
     }
 
-
     /**
      * 关闭SE服务
      */

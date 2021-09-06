@@ -1,0 +1,3 @@
+include ':SmartCard'
+include ':app'
+rootProject.name = "SmartCard"

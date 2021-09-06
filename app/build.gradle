@@ -7,7 +7,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.shinlooker.smartcard"
+        applicationId "com.shinlooker.demo"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1

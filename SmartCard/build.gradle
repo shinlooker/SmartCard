@@ -40,3 +40,14 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     compileOnly files('libs/org.simalliance.openmobileapi.jar')
 }
+
+/*task makeJar(type:Copy) {
+    delete 'build/libs/MyJar.jar'
+    // 不同项目目录可能会变，要根据classes.jar的路径填写
+    from('build/intermediates/bundles/release/')
+    into('build/libs/')
+    include('classes.jar')
+    rename('classes.jar', 'MyJar.jar')
+}
+
+makeJar.dependsOn(build)*/

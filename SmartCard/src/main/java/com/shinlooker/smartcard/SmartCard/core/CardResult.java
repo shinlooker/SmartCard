@@ -85,4 +85,14 @@ public class CardResult {
         return m.find();
     }
 
+    @Override
+    public String toString() {
+        return "CardResult{" +
+                "status=" + status +
+                ", sw='" + sw + '\'' +
+                ", rapdu='" + rapdu + '\'' +
+                ", apdu='" + apdu + '\'' +
+                ", message='" + message + '\'' +
+                '}';
+    }
 }

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.shinlooker.smartcard.SmartCard.OperationCallBack;
 import com.shinlooker.smartcard.SmartCard.ThreadPoolManager;
 import com.shinlooker.smartcard.SmartCard.core.CardResult;
+import com.shinlooker.smartcard.SmartCard.core.EnumReaderType;
 import com.shinlooker.smartcard.SmartCard.core.SmartCard;
 import com.shinlooker.smartcard.utils.Utils;
 
@@ -22,7 +23,10 @@ public class MainActivity extends AppCompatActivity {
     private EditText input_edittext;
     private Button todo_btn;
     private Button close_btn;
+    private Button esim_bt;
+    private Button ese_bt;
     private TextView jieguo_text;
+    private TextView type_text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +35,26 @@ public class MainActivity extends AppCompatActivity {
         input_edittext = findViewById(R.id.input_edittext);
         todo_btn = findViewById(R.id.todo_btn);
         jieguo_text = findViewById(R.id.jieguo_text);
+        type_text = findViewById(R.id.type_text);
         close_btn = findViewById(R.id.close_btn);
+        esim_bt = findViewById(R.id.esim_bt);
+        ese_bt = findViewById(R.id.ese_bt);
         initView();
     }
 
     private void initView() {
+        type_text.setText(SmartCard.getInstance().getmReaderType().getValue());
+
+        esim_bt.setOnClickListener(v -> {
+            SmartCard.getInstance().setmReaderType(EnumReaderType.READER_TYPE_SIM);
+            type_text.setText(SmartCard.getInstance().getmReaderType().getValue());
+        });
+
+        ese_bt.setOnClickListener(v -> {
+            SmartCard.getInstance().setmReaderType(EnumReaderType.READER_TYPE_ESE);
+            type_text.setText(SmartCard.getInstance().getmReaderType().getValue());
+        });
+
         todo_btn.setOnClickListener(v -> {
             String trim = input_edittext.getText().toString().trim();
             appletActive(trim, cardResult -> {

@@ -3,6 +3,7 @@ package com.shinlooker.demo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,6 +41,13 @@ public class MainActivity extends AppCompatActivity {
         esim_bt = findViewById(R.id.esim_bt);
         ese_bt = findViewById(R.id.ese_bt);
         initView();
+       /* Log.i("111111a",OSUtils.getName());
+        Log.i("111111b",OSUtils.getVersion());
+        Log.i("111111c", String.valueOf(OSUtils.isOppo()));
+//        DeviceInfoUtils.getDeviceAllInfo(this);
+//        Log.i("111111d", DeviceInfoUtils.getDeviceAllInfo(this));
+        Log.i("111111d",RomUtils.getRomInfo().toString());
+        Log.i("111111e", String.valueOf(RomUtils.isOneplus()));*/
     }
 
     private void initView() {
@@ -71,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         List<String> apduList = new ArrayList<>();
         apduList.clear();
         apduList.add(apdu);
-        ThreadPoolManager.getInstance().execute(() -> {
+        /*ThreadPoolManager.getInstance().execute(() -> {
             CardResult cardResult = null;
             for (String capu : apduList) {
                 //执行指令
@@ -84,6 +92,22 @@ public class MainActivity extends AppCompatActivity {
             }
             callBack.complete(cardResult);
 //            SmartCard.getInstance().closeChannel();
-        });
+        });*/
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                CardResult cardResult = null;
+                for (String capu : apduList) {
+                    //执行指令
+                    cardResult = SmartCard.getInstance().execute(capu);
+                    if (cardResult.getStatus() == -1) {
+                        callBack.complete(cardResult);
+                        SmartCard.getInstance().closeChannel();
+                        return;
+                    }
+                }
+                callBack.complete(cardResult);
+            }
+        }).start();
     }
 }

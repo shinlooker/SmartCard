@@ -9,13 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartCard">
-        <activity android:name="com.shinlooker.demo.MainActivity">
+        <activity android:name="com.shinlooker.demo.TestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+      <!--  <activity android:name=".TestActivity" />-->
     </application>
 
 </manifest>

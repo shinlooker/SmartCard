@@ -57,6 +57,7 @@ public class TestActivity extends AppCompatActivity {
                 }
             }
             callBack.complete(cardResult);
+            //测试提交
 //            SmartCard.getInstance().closeChannel();
         });
     }
